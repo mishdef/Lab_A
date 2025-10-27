@@ -10,30 +10,24 @@ namespace Lab.Class
 {
     public class ProjectBoard : IPrintable
     {
-        static int id = 0;
-
-        public int Id { get; set; }
         public string Name { get; set; }
         public List<Task> Tasks { get; } = new List<Task>();
 
         public ProjectBoard()
         {
             Name = "ProjectBoard";
-            id++;
-            Id = id;
         }
         public ProjectBoard(string name)
         {
             Name = name;
-            id++;
-            Id = id;
         }
 
-        public void AddTask(IUserInfo sessionUser, Task task)
+        public Task AddTask(IUserInfo sessionUser, string taskName)
         {
             if (PermissionService.CanInteractWithProjectBoard(sessionUser))
             {
-                Tasks.Add(task);
+                Tasks.Add(new Task(taskName));
+                return Tasks.Last();
             }
             else
             {
@@ -64,7 +58,7 @@ namespace Lab.Class
         }
         public string GetInfo()
         {
-            throw new NotImplementedException();
+            return $"[Project Board] - {Name}. Tasks: {Tasks.Count}";
         }
     }
 }

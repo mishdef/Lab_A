@@ -10,9 +10,6 @@ namespace Lab.Class
 {
     public class Task : IPrintable
     {
-        static int id = 0;
-
-        public int Id { get; set; }
         public string Name { get; set; }
         public TaskStat CurrentStatus { get; set; } = TaskStat.ToDo;
         public IUserInfo Assignee { get; set; }
@@ -20,8 +17,6 @@ namespace Lab.Class
         public Task()
         {
             Name = "Task";
-            id++;
-            Id = id;
         }
         public Task(string name) : this()
         {
@@ -60,9 +55,11 @@ namespace Lab.Class
                 CurrentStatus = NewStatus;
             }
         }
+
         public string GetInfo()
         {
-            return "(" + Id + ") " + Name + " | " + CurrentStatus + " | " + Assignee.Name;
+            string assigneeName = (Assignee != null) ? Assignee.Name : "Unassigned";
+            return $"[Task] - {Name} | Status: {CurrentStatus} | Assignee: {assigneeName}";
         }
     }
 }

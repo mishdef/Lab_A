@@ -1,9 +1,4 @@
 ﻿using MyFunctions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static MyFunctions.Tools;
 using Lab.Interface;
 using Lab.Enum;
@@ -113,7 +108,6 @@ namespace Lab.Class
                     {
                         case 1:
                             ViewTasks(projectBoard);
-                            InteractWithTask(projectBoard);
                             break;
                         case 2:
                             Tools.DrawLine(50);
@@ -137,19 +131,16 @@ namespace Lab.Class
         public void OpenProjectBoard()
         {
             ViewProjectBoards();
-            string name = InputString("Project board name: ");
-            ProjectBoard? projectBoard = company.ProjectBoards.Find(x => x.Name == name);
+
+            int i = InputInt("Project board number: ", InputType.With, 1, company.ProjectBoards.Count);
+            ProjectBoard? projectBoard = company.ProjectBoards[i - 1];
             if (projectBoard == null) throw new Exception("Project board not found");
 
             BoardInteractionMenu(projectBoard);
         }
 
-        public void InteractWithTask(ProjectBoard projectBoard)
+        public void InteractWithTask(ProjectBoard projectBoard, Task task)
         {
-            string name = InputString("Task to interact with: ");
-            Task? task = projectBoard.Tasks.Find(x => x.Name == name);
-            if (task == null) throw new Exception("Task not found");
-
             bool exit = false;
 
             do
@@ -196,6 +187,8 @@ namespace Lab.Class
 
         public void ViewTasks(ProjectBoard projectBoard)
         {
+            if (projectBoard.Tasks.Count == 0) throw new Exception("No tasks found");
+
             List<Task> ToDoTasks = projectBoard.Tasks.FindAll(x => x.CurrentStatus == TaskStat.ToDo);
             List<Task> InProgressTasks = projectBoard.Tasks.FindAll(x => x.CurrentStatus == TaskStat.InProgress);
             List<Task> InReviewTasks = projectBoard.Tasks.FindAll(x => x.CurrentStatus == TaskStat.InReview);
@@ -292,15 +285,51 @@ namespace Lab.Class
                 Console.WriteLine();
                 DrawLine(104);
 
+                //Selecting column than task
+                List<Task> column = new List<Task>();
+                
+                int col = Menu.DisplayMenu("Select column: ", new string[] { "ToDo", "In Progress", "In Review", "Done", "(Exit), None" }, false, true, false);
+                switch (col)
+                {
+                    case 1:
+                        column = ToDoTasks;
+                        break;
+                    case 2:
+                        column = InReviewTasks;
+                        break;
+                    case 3:
+                        column = DoneTasks;
+                        break;
+                    case 4:
+                        column = InReviewTasks;
+                        break;
+                    case 5:
+                        return;
+                    case -1:
+                        return;
+                }
 
+                if (column.Count == 0) throw new Exception("No tasks found");
+                int j = InputInt("Task number: ", InputType.With, 1, column.Count);
+                Task? task = column[j - 1];
+                if (task == null) throw new Exception("Task not found");
+                
+                InteractWithTask(projectBoard, task);
+            }
+        }
+
+        public void PrintTasksColumn(List<Task> tasks)
+        {
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                Console.WriteLine(i + ". "+ tasks[i]);
             }
         }
 
         public void AddTask(ProjectBoard projectBoard)
         {
             string name = InputString("Task name: ");
-            Task task = new Task(name);
-            projectBoard.AddTask(userSessionUser, task);
+            Task task = projectBoard.AddTask(userSessionUser, name);
 
             if (MessageBox.Show("Do you want assign task to Employee", "Question", MessageBox.Buttons.YesNo) == MessageBox.Button.Yes)
             {
@@ -310,8 +339,9 @@ namespace Lab.Class
 
         public void RemoveTask(ProjectBoard projectBoard)
         {
-            string name = InputString("Task name: ");
-            Task? task = projectBoard.Tasks.Find(x => x.Name == name);
+            ViewTasks(projectBoard);
+            int i = InputInt("Task number: ", InputType.With, 1, projectBoard.Tasks.Count);
+            Task? task = projectBoard.Tasks[i - 1];
             if (task == null) throw new Exception("Task not found");
             projectBoard.RemoveTask(userSessionUser, task);
         }
@@ -324,8 +354,8 @@ namespace Lab.Class
         public void AssignTask(ProjectBoard projectBoard, Task task)
         {
             ViewEmployees();
-            string name = InputString("Employee name: ");
-            IUserInfo? employee = company.Employees.Find(x => x.Name == name);
+            int i = InputInt("Employee number: ", InputType.With, 1, company.Employees.Count);
+            IUserInfo? employee = company.Employees[i - 1];
             if (employee == null) throw new Exception("Employee not found");
             task.AssignEmployee(userSessionUser, employee);
         }
@@ -344,10 +374,11 @@ namespace Lab.Class
 
         public void ViewProjectBoards()
         {
+            if (company.ProjectBoards.Count == 0) throw new Exception("No project boards");
             Console.WriteLine("Project boards: ");
-            foreach (var projectBoard in company.ProjectBoards)
+            for (int i = 0; i < company.ProjectBoards.Count; i++)
             {
-                Console.WriteLine(projectBoard.Name);
+                Console.WriteLine((i + 1) + ". " + company.ProjectBoards[i].Name);
             }
         }
 
@@ -362,8 +393,8 @@ namespace Lab.Class
         {
             ViewProjectBoards();
 
-            string name = InputString("Project board name: ");
-            ProjectBoard? projectBoard = company.ProjectBoards.Find(x => x.Name == name);
+            int i = InputInt("Project board number: ", InputType.With, 1, company.ProjectBoards.Count);
+            ProjectBoard? projectBoard = company.ProjectBoards[i - 1];
             if (projectBoard == null) throw new Exception("Project board not found");
             company.RemoveProjectBoard(userSessionUser, projectBoard);
             Console.WriteLine("Project board removed");
@@ -371,10 +402,10 @@ namespace Lab.Class
 
         public void ViewEmployees()
         {
+            if (company.Employees.Count == 0) throw new Exception("No employees");
             Console.WriteLine("Employees: ");
-            foreach (var employee in company.Employees)
-            {
-                Console.WriteLine(employee.Name + " - " + employee.GetType().Name);
+            for (int i = 0; i < company.Employees.Count; i++) { 
+                Console.WriteLine( (i + 1) + ". " + company.Employees[i].Name + " - " + company.Employees[i].GetType().Name);
             }
         }
 
@@ -404,8 +435,9 @@ namespace Lab.Class
             {
                 Console.WriteLine($"{i + 1}. {company.Employees[i].Name}");
             }
-            string name = InputString("Employee name: ");
-            IUserInfo? employee = company.Employees.Find(x => x.Name == name);
+
+            int j = InputInt("Employee number: ", InputType.With, 1, company.Employees.Count);
+            IUserInfo? employee = company.Employees[j - 1];
             if (employee == null) throw new Exception("Employee not found");
             company.RemoveEmployee(userSessionUser, employee);
 
@@ -416,8 +448,8 @@ namespace Lab.Class
         {
             ViewEmployees();
 
-            string name = InputString("User name: ");
-            IUserInfo? user = company.Employees.Find(x => x.Name == name);
+            int i = InputInt("Employee number: ", InputType.With, 1, company.Employees.Count);
+            IUserInfo? user = company.Employees[i - 1];
             if (user == null) throw new Exception("User not found");
             userSessionUser = user;
         }

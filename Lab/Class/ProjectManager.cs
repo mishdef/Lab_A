@@ -10,24 +10,21 @@ namespace Lab.Class
 {
     public class ProjectManager : IUserInfo, IPrintable
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
 
         public ProjectManager()
         {
             Name = "ProjectManager";
-            Id = ++IUserInfo.id;
         }
         public ProjectManager(string name)
         {
             Name = name;
-            Id = ++IUserInfo.id;
         }
 
         public string GetInfo()
         {
-            throw new NotImplementedException();
+            return $"[Project Manager] - {Name}";
         }
     }
 }

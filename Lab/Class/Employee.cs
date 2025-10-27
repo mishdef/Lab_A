@@ -10,24 +10,21 @@ namespace Lab.Class
 {
     public class Employee : IUserInfo, IPrintable
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
 
         public Employee()
         {
             Name = "Employee";
-            Id = ++IUserInfo.id;
         }
         public Employee(string name)
         {
             Name = name;
-            Id = ++IUserInfo.id;
         }
 
         public string GetInfo()
         {
-            throw new NotImplementedException();
+            return $"[Employee] - {Name}";
         }
     }
 }

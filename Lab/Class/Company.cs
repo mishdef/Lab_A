@@ -9,9 +9,6 @@ namespace Lab.Class
 {
     public class Company
     {
-        static int id = 0;
-
-        public int Id { get; set; }
         public string Name { get; set; }
         public List<IUserInfo> Employees { get; set; } = new List<IUserInfo>();
         public List<ProjectBoard> ProjectBoards { get; } = new List<ProjectBoard>();
@@ -19,8 +16,6 @@ namespace Lab.Class
         public Company(IUserInfo CEO)
         {
             Name = "Company";
-            id++;
-            Id = id;
             AddEmployee(CEO, CEO);
         }
         public Company(IUserInfo CEO, string name) : this(CEO)
