@@ -16,51 +16,38 @@ namespace Lab.Class
 
         public Task()
         {
-            Name = "Task";
+            throw new NotImplementedException();
         }
         public Task(string name) : this()
         {
-            Name = name;
+            throw new NotImplementedException();
         }
         public Task(string name, IUserInfo assignee) : this(name)
         {
-            Assignee = assignee;
+            throw new NotImplementedException();
         }
 
         public void AssignEmployee(IUserInfo sessionUser, IUserInfo assignee)
         {
-            if (PermissionService.CanInteractWithProjectBoard(sessionUser))
-            {
-                Assignee = assignee;
-            }
+            throw new NotImplementedException();
         }
 
         public void UnassignEmployee(IUserInfo assignee, IUserInfo sessionUser)
         {
-            if (PermissionService.CanInteractWithProjectBoard(sessionUser))
-            {
-                Assignee = null;
-            }
+            throw new NotImplementedException();
         }
         public void ChangeName(IUserInfo sessionUser, string name)
         {
-            if (PermissionService.CanInteractWithProjectBoard(sessionUser))
-            {
-                Name = name;
-            }
+            throw new NotImplementedException();
         }
         public void MoveTask(IUserInfo assaignee, TaskStat NewStatus)
         {
-            if (PermissionService.CanInteractWithTask(assaignee))
-            {
-                CurrentStatus = NewStatus;
-            }
+            throw new NotImplementedException();
         }
 
         public string GetInfo()
         {
-            string assigneeName = (Assignee != null) ? Assignee.Name : "Unassigned";
-            return $"[Task] - {Name} | Status: {CurrentStatus} | Assignee: {assigneeName}";
+            throw new NotImplementedException();
         }
     }
 }

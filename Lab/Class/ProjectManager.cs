@@ -15,16 +15,16 @@ namespace Lab.Class
 
         public ProjectManager()
         {
-            Name = "ProjectManager";
+            throw new NotImplementedException();
         }
         public ProjectManager(string name)
         {
-            Name = name;
+            throw new NotImplementedException();
         }
 
         public string GetInfo()
         {
-            return $"[Project Manager] - {Name}";
+            throw new NotImplementedException();
         }
     }
 }

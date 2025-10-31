@@ -15,16 +15,16 @@ namespace Lab.Class
 
         public Employee()
         {
-            Name = "Employee";
+            throw new NotImplementedException();
         }
         public Employee(string name)
         {
-            Name = name;
+            throw new NotImplementedException();
         }
 
         public string GetInfo()
         {
-            return $"[Employee] - {Name}";
+            throw new NotImplementedException();
         }
     }
 }

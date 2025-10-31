@@ -15,74 +15,33 @@ namespace Lab.Class
 
         public Company(IUserInfo CEO)
         {
-            Name = "Company";
-            AddEmployee(CEO, CEO);
+            throw new NotImplementedException();
         }
 
         public Company(IUserInfo CEO, string name) : this(CEO)
         {
-            Name = name;
+            throw new NotImplementedException();
         }
 
         public void CreateProjectBoard(IUserInfo sessionUser, string name)
         {
-            if (sessionUser is CEO)
-            {
-                ProjectBoards.Add(new ProjectBoard(name));
-            }
-
-            else
-            {
-                throw new Exception("Only CEO can create project board");
-            }
+            throw new NotImplementedException();
         }
         public void AddEmployee(IUserInfo sessionUser, IUserInfo newEmployee)
         {
-            if (sessionUser is CEO)
-            {
-                Employees.Add(newEmployee);
-            }
-            else
-            {
-                throw new Exception("Only CEO can add employee");
-            }
+            throw new NotImplementedException();
         }
         public void ChangeName(IUserInfo sessionUser, string name)
         {
-            if (sessionUser is CEO)
-            {
-                Name = name;
-            }
-            else
-            {
-                throw new Exception("Only CEO can change name");
-            }
+            throw new NotImplementedException();
         }
         public void RemoveEmployee(IUserInfo sessionUser, IUserInfo employee)
         {
-            if (sessionUser == employee)
-            {
-                throw new Exception("You can't remove yourself");
-            }
-            if (sessionUser is CEO)
-            {
-                Employees.Remove(employee);
-            }
-            else
-            {
-                throw new Exception("Only CEO can remove employee");
-            }
+            throw new NotImplementedException();
         }
         public void RemoveProjectBoard(IUserInfo sessionUser, ProjectBoard projectBoard)
         {
-            if (sessionUser is CEO)
-            {
-                ProjectBoards.Remove(projectBoard);
-            }
-            else
-            {
-                throw new Exception("Only CEO can remove project board");
-            }
+            throw new NotImplementedException();
         }
     }
 }

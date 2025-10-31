@@ -14,16 +14,16 @@ namespace Lab.Class
 
         public CEO()
         {
-            Name = "CEO";
+            throw new NotImplementedException();
         }
         public CEO(string name)
         {
-            Name = name;
+            throw new NotImplementedException();
         }
 
         public string GetInfo()
         {
-            return $"[CEO] - {Name}";
+            throw new NotImplementedException();
         }
     }
 }
