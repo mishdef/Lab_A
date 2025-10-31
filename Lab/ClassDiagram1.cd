@@ -3,29 +3,26 @@
   <Class Name="Lab.Class.CEO">
     <Position X="25" Y="1.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class\CEO.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Lab.Class.Company">
-    <Position X="15.75" Y="1.75" Width="5.25" />
+    <Position X="13.5" Y="1.5" Width="5.25" />
     <TypeIdentifier>
-      <HashCode>AAACAEAAAAAIAAAAAACQAAQACAAAAAAAAAAAAFAAAgA=</HashCode>
+      <HashCode>AAAAAEAAAAAIAAAAAACQAAQACAAAAAAAAAAAAFAAAAA=</HashCode>
       <FileName>Class\Company.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="Lab.Class.CompanyProjectsAppSession">
-    <Position X="8.75" Y="1.75" Width="5" />
-    <TypeIdentifier>
-      <HashCode>AAAARGAgUAAAAABAAACQAACAFIgAAAAABAAAQBAAAAQ=</HashCode>
-      <FileName>Class\CompanyProjectsAppSession.cs</FileName>
-    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Employees" />
+      <Property Name="ProjectBoards" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Lab.Class.Employee">
     <Position X="21.5" Y="1.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class\Employee.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -38,31 +35,38 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab.Class.ProjectBoard">
-    <Position X="17.5" Y="6" Width="3.5" />
+    <Position X="13.75" Y="7" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAACBCAAAAAAAAAAAAAAAAQAAAAAAEAAAAAIAEAAAgA=</HashCode>
+      <HashCode>AAAABCAAAAAAAAAAAAAAAAQAAAAAAEAAAAAIAEAAAAA=</HashCode>
       <FileName>Class\ProjectBoard.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tasks" />
+    </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Lab.Class.ProjectManager">
     <Position X="28.5" Y="1.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Class\ProjectManager.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Lab.Class.Task">
-    <Position X="16.25" Y="10" Width="4.25" />
+    <Position X="22" Y="7" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAEAAABAASAIQAAAAAAEAAAAAAAEAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEAAABAASAIQAAAAAAEAAAAAAAEAAAAA=</HashCode>
       <FileName>Class\Task.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Assignee" />
+      <Property Name="CurrentStatus" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="Lab.Interface.IPrintable">
-    <Position X="24.25" Y="4.5" Width="1.5" />
+    <Position X="24.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface\IPrintable.cs</FileName>
@@ -71,12 +75,12 @@
   <Interface Name="Lab.Interface.IUserInfo">
     <Position X="21.5" Y="4.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface\IUserInfo.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Lab.Enum.TaskStat">
-    <Position X="21.5" Y="9.5" Width="1.5" />
+    <Position X="27.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAQAAAAAAAAAAAAAAAAAAAABAAAAAABAAAAA=</HashCode>
       <FileName>Enum\TaskStatus.cs</FileName>

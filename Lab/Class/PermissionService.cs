@@ -8,21 +8,21 @@ using Lab.Enum;
 
 namespace Lab.Class
 {
-    static class PermissionService
+    public static class PermissionService
     {
         static public bool CanInteractWithCompany(IUserInfo userInfo)
         {
-            return userInfo is CEO;
+            throw new NotImplementedException();
         }
 
         static public bool CanInteractWithProjectBoard(IUserInfo userInfo)
         {
-            return userInfo is CEO || userInfo is ProjectManager;
+            throw new NotImplementedException();
         }
 
         static public bool CanInteractWithTask(IUserInfo userInfo)
         {
-            return userInfo is CEO || userInfo is ProjectManager || userInfo is Employee;
+            throw new NotImplementedException();
         }
     }
 }
