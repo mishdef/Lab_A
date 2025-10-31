@@ -12,17 +12,17 @@ namespace Lab.Class
     {
         static public bool CanInteractWithCompany(IUserInfo userInfo)
         {
-            throw new NotImplementedException();
+            return userInfo is CEO;
         }
 
         static public bool CanInteractWithProjectBoard(IUserInfo userInfo)
         {
-            throw new NotImplementedException();
+            return userInfo is CEO || userInfo is ProjectManager;
         }
 
         static public bool CanInteractWithTask(IUserInfo userInfo)
         {
-            throw new NotImplementedException();
+            return userInfo is CEO || userInfo is ProjectManager || userInfo is Employee;
         }
     }
 }

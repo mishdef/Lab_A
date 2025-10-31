@@ -15,30 +15,52 @@ namespace Lab.Class
 
         public ProjectBoard()
         {
-            throw new NotImplementedException();
+            Name = "ProjectBoard";
         }
         public ProjectBoard(string name)
         {
-            throw new NotImplementedException();
+            Name = name;
         }
 
         public Task AddTask(IUserInfo sessionUser, string taskName)
         {
-            throw new NotImplementedException();
+            if (PermissionService.CanInteractWithProjectBoard(sessionUser))
+            {
+                Tasks.Add(new Task(taskName));
+                return Tasks.Last();
+            }
+            else
+            {
+                throw new Exception("Only CEO and ProjectManager can add task");
+            }
         }
 
         public void RemoveTask(IUserInfo assignee, Task task)
         {
-            throw new NotImplementedException();
+            if (PermissionService.CanInteractWithProjectBoard(assignee))
+            {
+                Tasks.Remove(task);
+            }
+            else
+            {
+                throw new Exception("Only CEO and ProjectManager can remove task");
+            }
         }
 
         public void ChangeName(IUserInfo sessionUser, string name)
         {
-            throw new NotImplementedException();
+            if (PermissionService.CanInteractWithProjectBoard(sessionUser))
+            {
+                Name = name;
+            }
+            else
+            {
+                throw new Exception("Only CEO and ProjectManager can change name");
+            }
         }
         public string GetInfo()
         {
-            throw new NotImplementedException();
+            return $"[Project Board] - {Name}. Tasks: {Tasks.Count}";
         }
     }
 }
